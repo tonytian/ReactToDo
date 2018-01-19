@@ -7,4 +7,4 @@ describe('App', () => {
         expect(2).toBe(2);
     });
 
-})
+}); 
