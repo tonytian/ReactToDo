@@ -71,6 +71,25 @@ describe('TodoAPI', () => {
             expect(TodoAPI.filterTodos(todos, false, '').length).toEqual(1);
             expect(TodoAPI.filterTodos(todos, true, '').length).toEqual(2);
 
+        }); 
+
+        it('should put not completed before completed', () => {
+            var todos = [
+                {
+                    id: 1,
+                    text: 'boom',
+                    completed: true
+                }, 
+                {
+                    id: 2,
+                    text: 'aaa',
+                    completed: false
+                }
+            ];
+            var sorted = TodoAPI.filterTodos(todos, true, ''); 
+            expect(sorted[0].completed).toEqual(false);
+            expect(sorted[1].completed).toEqual(true);
+
         })
     })
 })

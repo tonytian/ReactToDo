@@ -20,17 +20,26 @@ var TodoAPI = {
     },
     filterTodos: function (todos, showCompleted, searchText) {
         var filtered = todos;
+        
         filtered = filtered.filter((item) => {
             return !item.completed || showCompleted;
         });
 
-        if (searchText === '') {
-            return filtered;
-        }
-
         var filtered = filtered.filter((item) => {
-            return item.text.toLowerCase().includes(searchText);
+            return searchText.length === 0 || item.text.toLowerCase().includes(searchText);
         });
+
+        filtered.sort((a, b) => {
+            if (!a.completed && b.completed) {
+                return -1; 
+            }
+            else if(a.completed && !b.completed) {
+                return 1; 
+            }
+            else {
+                return 0;
+            }
+        }); 
 
 
         return $.isArray(filtered) ? filtered : [];
