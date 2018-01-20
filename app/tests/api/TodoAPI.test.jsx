@@ -90,6 +90,23 @@ describe('TodoAPI', () => {
             expect(sorted[0].completed).toEqual(false);
             expect(sorted[1].completed).toEqual(true);
 
+        }); 
+
+        it('search should ignore case', () => {
+            var todos = [
+                {
+                    id: 1,
+                    text: 'aaa',
+                    completed: true
+                }, 
+                {
+                    id: 2,
+                    text: 'AAA',
+                    completed: false
+                }
+            ];
+            var filtered = TodoAPI.filterTodos(todos, true, 'AAA'); 
+            expect(filtered.length).toEqual(2);
         })
     })
 })

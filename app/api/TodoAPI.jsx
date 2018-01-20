@@ -20,13 +20,13 @@ var TodoAPI = {
     },
     filterTodos: function (todos, showCompleted, searchText) {
         var filtered = todos;
-        
+
         filtered = filtered.filter((item) => {
             return !item.completed || showCompleted;
         });
 
         var filtered = filtered.filter((item) => {
-            return searchText.length === 0 || item.text.toLowerCase().includes(searchText);
+            return searchText.length === 0 || item.text.toLowerCase().includes(searchText.toLowerCase());
         });
 
         filtered.sort((a, b) => {
