@@ -6,56 +6,57 @@ var uuid = require('node-uuid');
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
-    getInitialState: function(){
+    getInitialState: function () {
         return {
-            todos: TodoAPI.getTodos(), 
-            showCompleted: false, 
+            todos: TodoAPI.getTodos(),
+            showCompleted: false,
             searchText: ''
         }
     },
-    componentDidUpdate: function() {
+    componentDidUpdate: function () {
         TodoAPI.setTodos(this.state.todos);
-    }, 
-    handleAddTodo: function(text) {
+    },
+    handleAddTodo: function (text) {
         this.setState(
             {
                 todos: [
-                    ...this.state.todos, 
+                    ...this.state.todos,
                     {
-                        id: uuid(), 
-                        text: text, 
+                        id: uuid(),
+                        text: text,
                         completed: false,
                     }
                 ]
             }
-        ); 
-    }, 
-    handleToggle: function(id) {
-        var {todos} = this.state; 
-        for(var i = 0; i < todos.length; i++) {
-            if(todos[i].id === id ) {
-                todos[i].completed = !todos[i].completed; 
+        );
+    },
+    handleToggle: function (id) {
+        var { todos } = this.state;
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id === id) {
+                todos[i].completed = !todos[i].completed;
             }
         }
-        this.setState({todos: todos});
-    }, 
-    handleSearch: function(showCompleted, searchText) {
+        this.setState({ todos: todos });
+    },
+    handleSearch: function (showCompleted, searchText) {
         console.log(showCompleted + '-' + searchText);
         this.setState({
-            showCompleted: showCompleted, 
+            showCompleted: showCompleted,
             searchText: searchText.toLowerCase()
-        }); 
-    }, 
-    render: function() {
-        var {todos} = this.state;
+        });
+    },
+    render: function () {
+        var { todos, searchText, showCompleted } = this.state;
+        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
         return (
             <div>
                 <TodoSearch onSearch={this.handleSearch} />
-                <TodoList todos={todos} onToggle={this.handleToggle}/>
-                <AddTodoForm onAddTodo={this.handleAddTodo}/>
+                <TodoList todos={filteredTodos} onToggle={this.handleToggle} />
+                <AddTodoForm onAddTodo={this.handleAddTodo} />
             </div>
         )
     }
-}); 
+});
 
 module.exports = TodoApp; 
