@@ -14,7 +14,7 @@ describe('TodoList', () => {
 
     it('should call onSearch when search text changed', () => {
         var spy = expect.createSpy(); 
-        var search = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy} />); 
+        var search = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy} />);  
         search.refs.searchText.value = 'thing'
         TestUtils.Simulate.change(search.refs.searchText);
         expect(spy).toHaveBeenCalledWith(false, 'thing'); 

@@ -22,6 +22,9 @@ describe('Reducers', () => {
 
             var res = reducers.showCompletedReducer(true, df(action));
             expect(res).toEqual(false);
+
+            var res = reducers.showCompletedReducer(undefined, df(action));
+            expect(res).toEqual(true);
         });
 
         it('should add todo', () => {
