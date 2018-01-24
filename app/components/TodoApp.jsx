@@ -34,8 +34,6 @@ var TodoApp = React.createClass({
         );
     },
     render: function () {
-        var { todos, searchText, showCompleted } = this.state;
-        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
         return (
             <div>
                 <h1 className="page-title">Todo App</h1>

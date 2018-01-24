@@ -35,7 +35,7 @@ describe('TodoList', () => {
         ];
         var store = configure({
             todos
-        });store
+        });
         var provider = TestUtils.renderIntoDocument(
             <Provider store={store}>
                 <ConnectedTodoList />

@@ -5,13 +5,20 @@ var { Provider } = require('react-redux');
 var TodoApp = require('TodoApp');
 
 var actions = require('actions');
-var store = require('configureStore').configure();
+import { configure } from 'configureStore' ;
+
+import TodoAPI from 'TodoAPI';
+
+var todos = TodoAPI.getTodos(); 
+
+var store = configure({
+    todos
+});
 
 store.subscribe(() => {
     console.log('new state', store.getState());
+    TodoAPI.setTodos(store.getState().todos);  
 });
-
-store.dispatch(actions.addTodo('clean the dishes'));
 
 //Load foundation
 $(document).foundation();
