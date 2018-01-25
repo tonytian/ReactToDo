@@ -1,6 +1,6 @@
 var React = require('react');
 var { connect } = require('react-redux');
-import { addTodo } from 'actions'
+import { startAddTodo } from 'actions'
 import { configure } from 'configureStore';
 
 export var AddTodoForm = React.createClass({
@@ -9,7 +9,7 @@ export var AddTodoForm = React.createClass({
         var text = this.refs.todoText.value; 
         if(text && text.length > 0) {
             this.refs.todoText.value = ''; 
-            this.props.dispatch(addTodo(text)); 
+            this.props.dispatch(startAddTodo(text)); 
         }
         else {
             this.refs.todoText.focus();
