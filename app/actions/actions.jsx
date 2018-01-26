@@ -23,8 +23,9 @@ export var startAddTodo = (text) => {
             completedAt: null,
             completed: false,
         }
+        console.log(todo);
         var todoRef = firebaseRef.child('todos').push(todo);
-        todoRef.then(() => {
+        return todoRef.then(() => {
             dispatch(addTodo({
                 ...todo, 
                 id: todoRef.key

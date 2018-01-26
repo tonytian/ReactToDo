@@ -32,8 +32,7 @@ export var todosReducer = (state = [], action) => {
                     item.completed = !item.completed;
                 }
                 return item; 
-            })
-            console.log(result)
+            }); 
             return result;
         default:
             return state;
