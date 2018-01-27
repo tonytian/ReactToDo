@@ -9,16 +9,12 @@ import { configure } from 'configureStore' ;
 
 import TodoAPI from 'TodoAPI';
 
-var todos = TodoAPI.getTodos(); 
+// var todos = TodoAPI.getTodos(); 
 
-var store = configure({
-    todos
-});
+var store = configure({});
 
-store.subscribe(() => {
-    console.log('new state', store.getState());
-    TodoAPI.setTodos(store.getState().todos);  
-});
+
+store.dispatch(actions.startAddTodos()); 
 
 //Load foundation
 $(document).foundation();
