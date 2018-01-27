@@ -11,6 +11,9 @@
   },
   "author": "Tony",
   "license": "MIT",
+  "engines": {
+    "node": "5.12.0"
+  },
   "dependencies": {
     "axios": "^0.9.1",
     "express": "^4.13.4",

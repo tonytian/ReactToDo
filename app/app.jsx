@@ -9,8 +9,6 @@ import { configure } from 'configureStore' ;
 
 import TodoAPI from 'TodoAPI';
 
-// var todos = TodoAPI.getTodos(); 
-
 var store = configure({});
 
 
