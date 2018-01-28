@@ -74,5 +74,25 @@ describe('Reducers', () => {
             expect(res[0].completedAt).toEqual('time');
         });
 
+        it('should set uid when login', () => {
+            var uid = 'user id';
+            var action = {
+                type: 'LOG_IN', 
+                uid 
+            };
+            var res = reducers.authReducer(null, df(action));
+            expect(res).toEqual(uid); 
+
+        });
+
+        it('should set uid when logout', () => {
+            var action = {
+                type: 'LOG_OUT'
+            };
+            var res = reducers.authReducer('old id', df(action));
+            expect(res).toEqual(null); 
+            
+        });
+
     })
 }); 

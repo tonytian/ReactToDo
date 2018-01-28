@@ -136,6 +136,20 @@ describe('actions', () => {
                 })
             });
         }); 
+        it('should create login action', () => {
+            var uid = '123abc'
+            var res = actions.login(uid); 
+            expect(res).toEqual({
+                type: 'LOG_IN', 
+                uid
+            }); 
+        }); 
+        it('should create logout action', () => {
+            var res = actions.logout(); 
+            expect(res).toEqual({
+                type: 'LOG_OUT'
+            }); 
+        })
     }); 
 }); 
 

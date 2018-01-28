@@ -97,6 +97,7 @@ export var startLogin = () => {
         return firebase.auth().signInWithPopup(githubProvider).then(
             (result) => {
                 console.log('auth worked: ', result); 
+                dispatch(login(result.user.uid));
                 
             }, 
             (e) => {
@@ -111,6 +112,20 @@ export var startLogout = () => {
         console.log('Logging out firebase');
         return firebase.auth().signOut().then( () => {
             console.log("Logged out!");
+            dispatch(logout());
         }); 
+    }
+}
+
+export var login = (uid) => {
+    return {
+        type: 'LOG_IN', 
+        uid
+    }
+}
+
+export var logout = () => {
+    return {
+        type: 'LOG_OUT'
     }
 }
