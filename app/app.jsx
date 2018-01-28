@@ -8,10 +8,12 @@ import firebase from 'app/firebase/'
 import * as actions from 'actions';
 import router from 'app/router/'
 
+var store = configure({});
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(actions.login(user.uid));
+        store.dispatch(actions.startAddTodos());
         hashHistory.push('todos');
 
     }
@@ -20,8 +22,6 @@ firebase.auth().onAuthStateChanged((user) => {
         hashHistory.push('/')
     }
 });
-var store = configure({});
-store.dispatch(actions.startAddTodos());
 
 //Load foundation
 $(document).foundation();
@@ -33,7 +33,7 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
     <Provider store={store}>
-        { router }
+        {router}
     </Provider>,
     document.getElementById('app')
 );
