@@ -13,6 +13,7 @@ try {
     console.log("can not initialise firebase!")
 }
 
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export var firebaseRef = firebase.database().ref(); 
 export default firebase; 
 

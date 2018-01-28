@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
-var TodoApp = require('TodoApp');
+import ConnectedTodoApp, { TodoApp } from 'TodoApp'; 
 var {Provider} = require('react-redux');
 var actions = require('actions');
 

@@ -1,4 +1,4 @@
-import firebase, { firebaseRef } from 'app/firebase/index';
+import firebase, { firebaseRef , githubProvider} from 'app/firebase/index';
 import moment from 'moment'
 
 export var setSearchText = (searchText) => {
@@ -89,5 +89,27 @@ export var addTodos = (todos) => {
     return {
         type: 'ADD_TODOS',
         todos
+    }
+}
+
+export var startLogin = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signInWithPopup(githubProvider).then(
+            (result) => {
+                console.log('auth worked: ', result); 
+            }, 
+            (e) => {
+                console.log('unabled to auth', e);                 
+            }
+        ); 
+    }
+}
+
+export var startLogout = () => {
+    return (dispatch, getState) => {
+        console.log('Logging out firebase');
+        return firebase.auth().signOut().then( () => {
+            console.log("Logged out!");
+        }); 
     }
 }
